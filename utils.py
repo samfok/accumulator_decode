@@ -21,6 +21,13 @@ def get_snr_gamma(lamtau_out, k):
     snr[idx] = a / np.sqrt(k*(b-c))
     return snr
 
+def get_snr_gamma_approx(lamtau_out, k):
+    """Approximate SNR of the synaptically filtered gamma process"""
+    snr_poi_sq = 2*lamtau_out*k
+    snr_g_sq = snr_poi_sq/(1+k**2/(3*snr_poi_sq))
+    snr_g = np.sqrt(snr_g_sq)
+    return snr_g
+
 def get_snr_periodic(lamtau):
     """SNR of the synaptically filtered periodic process"""
     snr = np.zeros_like(lamtau)
@@ -78,6 +85,6 @@ def optimize_yield_w_cache(ps_orig, fname_cache, calibrator):
     """Wrap the calibrator's optimize yield with caching"""
     def fun():
         ps, dac, est_enc, est_off, dbg = calibrator.optimize_yield(ps_orig)
-        return ps
+        return ps, est_enc, est_off
     ps = cache_fun(fname_cache, fun)
     return ps
