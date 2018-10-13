@@ -73,9 +73,12 @@ def cache_fun(fname_cache, fun):
         probably a lambda function
     """
     try:
+        print("checking cache for", fname_cache)
         with open(fname_cache, 'rb') as fhandle:
+            print("found cache")
             ret = pickle.load(fhandle)
     except (FileNotFoundError, EOFError):
+        print("cache not found, running function")
         ret = fun()
         with open(fname_cache, 'wb') as fhandle:
             pickle.dump(ret, fhandle)
