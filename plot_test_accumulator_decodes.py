@@ -12,8 +12,8 @@ import utils
 
 # swept parameters
 
-X = 16
-Y = 16
+X = 32
+Y = 32
 # FMAX_OUTS = [500]
 FMAX_OUTS = [1500, 1000, 500]
 
@@ -354,7 +354,7 @@ def plot_figure(exp_data):
             axs[0][idx1].set_xlim([-1, 1])
             axs[1][idx1].set_xlim([-1, 1])
         # axs[0][0].legend(loc="upper left", title=r"$F_\textrm{out}$")
-        axs[0][0].set_ylabel(r"$y_f/F_\textrm{out}$")
+        axs[0][0].set_ylabel(r"$y_f/F_\textrm{max}$")
         axs[1][0].set_ylabel("Count")
     set_axs_fmt(fig, axs, exp_data)
     plt.subplots_adjust(left=-0.05, bottom=-0.08, right=1.05, top=1.08, wspace=0.10, hspace=0.35)
